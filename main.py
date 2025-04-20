@@ -18,7 +18,7 @@ def press_button_save():
     pyautogui.moveTo(1000, 770, duration=0.1)# 保存
     pyautogui.click()
 
-for i in range(35):# 100個使っても0.32%しか上昇しないので注意
+for i in range(100):# 100個使っても0.32%しか上昇しないので注意
     print("======================")
     press_button_b()
     sleep(0.1)
@@ -29,10 +29,12 @@ for i in range(35):# 100個使っても0.32%しか上昇しないので注意
         except:
             print("パラメータ取得エラー")
     print(param_list)
-    if param_list[0] + param_list[3] == 0 and param_list[0] > param_list[3]:# 合計がでもメインステータスがプラスなら保存
+    primary_param_index = 0# メインステータスのインデックス
+    secondary_param_index = 3# サブステータスのインデックス
+    if param_list[primary_param_index] + param_list[secondary_param_index] == 0 and param_list[primary_param_index] > param_list[secondary_param_index]:# 合計がでもメインステータスがプラスなら保存
         print("保存(メインステータス優先)")
         press_button_save()
-    elif param_list[0] + param_list[3] > 0:# 合計が正なら保存
+    elif param_list[primary_param_index] + param_list[secondary_param_index] > 0:# 合計が正なら保存
         print("保存")
         press_button_save()
     else:
