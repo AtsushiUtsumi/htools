@@ -80,8 +80,14 @@ def get_param_from_file(file_path):
     tool = tools[0]
     # 画像読み込み
     img_org = Image.open(file_path)
+    rgb = img_org.getpixel((1, 1))
+
+    plus = 1# 符号
+    if rgb[0] > rgb[1]:# 赤が強い場合はマイナス
+        plus = -1
+    print(plus)
     value = tool.image_to_string(img_org , lang='eng', builder=pyocr.builders.DigitBuilder(tesseract_layout=6))
     if value[0] == '4':
-        return int(value[1:])
+        return abs(int(value[1:])) * plus
     else:
-        return int(value)
+        return abs(int(value)) * plus
