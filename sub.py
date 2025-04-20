@@ -2,6 +2,32 @@ import pytesseract
 from PIL import Image
 import pyocr
 import pyocr.builders
+from PIL import ImageGrab ,ImageOps
+
+# パラメータを取得する関数
+def get_param_list():
+    screenshot = ImageGrab.grab(bbox=(1140, 520, 1180, 540))# 体力値
+    screenshot.save('screenshot.png')  # デバッグ用にスクリーンショットを保存
+    exit(0)
+    screenshot = ImageOps.invert(screenshot)# 白黒反転
+    screenshot.save('筋力.png')  # デバッグ用にスクリーンショットを保存
+    image = charRec()
+    image.Convert()
+    screenshot = ImageGrab.grab(bbox=(1140, 520, 1180, 540))# 体力値
+    screenshot = ImageOps.invert(screenshot)# 白黒反転
+    screenshot.save('敏捷.png')  # デバッグ用にスクリーンショットを保存
+    screenshot = ImageGrab.grab(bbox=(1140, 520, 1180, 540))# 体力値
+    screenshot = ImageOps.invert(screenshot)# 白黒反転
+    screenshot.save('知力.png')  # デバッグ用にスクリーンショットを保存
+    screenshot = ImageGrab.grab(bbox=(1140, 520, 1180, 540))# 体力値
+    screenshot = ImageOps.invert(screenshot)# 白黒反転
+    screenshot.save('体力.png')  # デバッグ用にスクリーンショットを保存
+    return [
+        get_param_from_file('筋力.png'),
+        get_param_from_file('敏捷.png'),
+        get_param_from_file('知力.png'),
+        get_param_from_file('体力.png')
+            ]
 
 class charRec:
     def __init__(self):
@@ -16,7 +42,7 @@ class charRec:
                 if r >= 59 and g >= 59 and b >= 59:
                     self.img.putpixel((x,y),(255,255,255))
 
-        self.img.save("screenshot2.png")
+        self.img.save("体力.png")
 
     def imgText(self):
         return pytesseract.image_to_string(self.img, lang="eng")
@@ -47,3 +73,17 @@ img_org = Image.open(file_path)
 # OCR
 max_medals = tool.image_to_string(img_org , lang='eng', builder=pyocr.builders.DigitBuilder(tesseract_layout=6))
 print(f'max_medals：{max_medals}')
+
+def get_param_from_file(file_path):
+    tools = pyocr.get_available_tools()
+    if len(tools) == 0:
+        print('pyocrが見付かりません。pyocrをインストールして下さい。')
+        sys.exit(1)
+    tool = tools[0]
+    # 画像読み込み
+    img_org = Image.open(file_path)
+    value = tool.image_to_string(img_org , lang='eng', builder=pyocr.builders.DigitBuilder(tesseract_layout=6))
+    if int(value) > 400:
+        return int(value) - 400
+    else:
+        return int(value)
