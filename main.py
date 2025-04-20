@@ -20,7 +20,7 @@ def press_button_save():
 
 for i in range(100):# 100個使っても0.32%しか上昇しないので注意
     print("======================")
-    press_button_b()
+    press_button_c()
     sleep(0.1)
     param_list = None
     while param_list == None:
@@ -29,7 +29,7 @@ for i in range(100):# 100個使っても0.32%しか上昇しないので注意
         except:
             print("パラメータ取得エラー")
     print(param_list)
-    primary_param_index = 0# メインステータスのインデックス
+    primary_param_index = 2# メインステータスのインデックス
     secondary_param_index = 3# サブステータスのインデックス
     if param_list[primary_param_index] + param_list[secondary_param_index] == 0 and param_list[primary_param_index] > param_list[secondary_param_index]:# 合計がでもメインステータスがプラスなら保存
         print("保存(メインステータス優先)")

@@ -9,16 +9,12 @@ def get_param_list():
     range_x_min = 1150
     range_x_max = 1175
     screenshot = ImageGrab.grab(bbox=(range_x_min, 420, range_x_max, 440))# 筋力値
-    #screenshot = ImageOps.invert(screenshot)# 白黒反転
     screenshot.save('筋力.png')
     screenshot = ImageGrab.grab(bbox=(range_x_min, 455, range_x_max, 475))# 敏捷値
-    #screenshot = ImageOps.invert(screenshot)# 白黒反転
     screenshot.save('敏捷.png')
-    screenshot = ImageGrab.grab(bbox=(range_x_min, 485, range_x_max, 505))# 知力値
-    #screenshot = ImageOps.invert(screenshot)# 白黒反転
+    screenshot = ImageGrab.grab(bbox=(range_x_min, 488, range_x_max, 508))# 知力値
     screenshot.save('知力.png')
     screenshot = ImageGrab.grab(bbox=(range_x_min, 520, range_x_max, 540))# 体力値
-    #screenshot = ImageOps.invert(screenshot)# 白黒反転
     screenshot.save('体力.png')
     return [
         get_param_from_file('筋力.png'),
@@ -87,6 +83,10 @@ def get_param_from_file(file_path):
         plus = -1
     value = tool.image_to_string(img_org , lang='eng', builder=pyocr.builders.DigitBuilder(tesseract_layout=6))
     if value[0] == '4' and plus > 0:# プラスの符号を「4」と誤認する場合があるので、「4」始まりかつ緑色の場合は先頭の「4」を削除する
-        return abs(int(value[1:])) * plus
+        ret = abs(int(value[1:])) * plus
+        print(file_path + " : " + str(ret))
+        return ret
     else:
-        return abs(int(value)) * plus
+        ret = abs(int(value)) * plus
+        print(file_path + " : " + str(ret))
+        return ret
