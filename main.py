@@ -7,12 +7,13 @@ def press_button_b():
     pyautogui.click()
 def press_button_not_save():
     pyautogui.moveTo(1000 - 100, 770, duration=0.5)# やめる
-    #pyautogui.click()
+    pyautogui.click()
 def press_button_save():
     pyautogui.moveTo(1000, 770, duration=0.5)# 保存
-    #pyautogui.click()
+    pyautogui.click()
 
-for i in range(1):
+for i in range(5):
+    print("======================")
     press_button_b()
     print("B級育成")
     sleep(1)

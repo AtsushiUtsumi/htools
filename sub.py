@@ -85,9 +85,8 @@ def get_param_from_file(file_path):
     plus = 1# 符号
     if rgb[0] > rgb[1]:# 赤が強い場合はマイナス
         plus = -1
-    print(plus)
     value = tool.image_to_string(img_org , lang='eng', builder=pyocr.builders.DigitBuilder(tesseract_layout=6))
-    if value[0] == '4':
+    if value[0] == '4' and plus > 0:# プラスの符号を「4」と誤認する場合があるので、「4」始まりかつ緑色の場合は先頭の「4」を削除する
         return abs(int(value[1:])) * plus
     else:
         return abs(int(value)) * plus
