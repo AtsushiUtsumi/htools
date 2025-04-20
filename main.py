@@ -12,12 +12,17 @@ def press_button_save():
     pyautogui.moveTo(1000, 770, duration=0.1)# 保存
     pyautogui.click()
 
-for i in range(30):
+for i in range(90):
     print("======================")
     press_button_b()
     print("B級育成")
-    sleep(0.3)
-    param_list = get_param_list()
+    sleep(0.1)
+    param_list = None
+    while param_list == None:
+        try:
+            param_list = get_param_list()
+        except:
+            print("パラメータ取得エラー")
     print(param_list)
     if param_list[0] + param_list[3] == 0 and param_list[0] > param_list[3]:# 合計がでもメインステータスがプラスなら保存
         print("保存(メインステータス優先)")
