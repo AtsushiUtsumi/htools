@@ -6,17 +6,19 @@ from PIL import ImageGrab ,ImageOps
 
 # パラメータを取得する関数
 def get_param_list():
-    screenshot = ImageGrab.grab(bbox=(1140, 420, 1180, 440))# 筋力値
+    range_x_min = 1150
+    range_x_max = 1175
+    screenshot = ImageGrab.grab(bbox=(range_x_min, 420, range_x_max, 440))# 筋力値
     #screenshot = ImageOps.invert(screenshot)# 白黒反転
     screenshot.save('筋力.png')
-    screenshot = ImageGrab.grab(bbox=(1140, 455, 1180, 475))# 敏捷値
-    screenshot = ImageOps.invert(screenshot)# 白黒反転
+    screenshot = ImageGrab.grab(bbox=(range_x_min, 455, range_x_max, 475))# 敏捷値
+    #screenshot = ImageOps.invert(screenshot)# 白黒反転
     screenshot.save('敏捷.png')
-    screenshot = ImageGrab.grab(bbox=(1140, 485, 1180, 505))# 知力値
-    screenshot = ImageOps.invert(screenshot)# 白黒反転
+    screenshot = ImageGrab.grab(bbox=(range_x_min, 485, range_x_max, 505))# 知力値
+    #screenshot = ImageOps.invert(screenshot)# 白黒反転
     screenshot.save('知力.png')
-    screenshot = ImageGrab.grab(bbox=(1140, 520, 1180, 540))# 体力値
-    screenshot = ImageOps.invert(screenshot)# 白黒反転
+    screenshot = ImageGrab.grab(bbox=(range_x_min, 520, range_x_max, 540))# 体力値
+    #screenshot = ImageOps.invert(screenshot)# 白黒反転
     screenshot.save('体力.png')
     return [
         get_param_from_file('筋力.png'),

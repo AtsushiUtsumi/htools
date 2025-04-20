@@ -6,7 +6,7 @@ def press_button_b():
     pyautogui.moveTo(1000, 770, duration=0.5)# B級育成ボタン
     pyautogui.click()
 def press_button_not_save():
-    pyautogui.moveTo(1000, 770, duration=0.5)# やめる
+    pyautogui.moveTo(1000 - 100, 770, duration=0.5)# やめる
     #pyautogui.click()
 def press_button_save():
     pyautogui.moveTo(1000, 770, duration=0.5)# 保存
