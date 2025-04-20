@@ -12,7 +12,7 @@ def press_button_save():
     pyautogui.moveTo(1000, 770, duration=0.1)# 保存
     pyautogui.click()
 
-for i in range(90):
+for i in range(100):# 100個使っても0.32%しか上昇しないので注意
     print("======================")
     press_button_b()
     print("B級育成")
