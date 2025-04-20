@@ -40,6 +40,6 @@ text = get_text_at_cursor()
 screenshot = ImageGrab.grab(bbox=(1000, 750, 1100, 800))# B級育成ボタン
 screenshot = ImageGrab.grab(bbox=(1140, 520, 1180, 540))# 体力値
 screenshot = ImageOps.invert(screenshot)# 白黒反転
-screenshot.save('screenshot.png')  # デバッグ用にスクリーンショットを保存
+screenshot.save('screenshot3.png')  # デバッグ用にスクリーンショットを保存
 text = pytesseract.image_to_string(screenshot, output_type=pytesseract.Output.STRING)
 print('テキスト:' + text)

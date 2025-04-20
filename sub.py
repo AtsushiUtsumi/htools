@@ -6,22 +6,18 @@ from PIL import ImageGrab ,ImageOps
 
 # パラメータを取得する関数
 def get_param_list():
-    screenshot = ImageGrab.grab(bbox=(1140, 520, 1180, 540))# 体力値
-    screenshot.save('screenshot.png')  # デバッグ用にスクリーンショットを保存
-    exit(0)
+    screenshot = ImageGrab.grab(bbox=(1140, 420, 1180, 440))# 筋力値
+    #screenshot = ImageOps.invert(screenshot)# 白黒反転
+    screenshot.save('筋力.png')
+    screenshot = ImageGrab.grab(bbox=(1140, 455, 1180, 475))# 敏捷値
     screenshot = ImageOps.invert(screenshot)# 白黒反転
-    screenshot.save('筋力.png')  # デバッグ用にスクリーンショットを保存
-    image = charRec()
-    image.Convert()
-    screenshot = ImageGrab.grab(bbox=(1140, 520, 1180, 540))# 体力値
+    screenshot.save('敏捷.png')
+    screenshot = ImageGrab.grab(bbox=(1140, 485, 1180, 505))# 知力値
     screenshot = ImageOps.invert(screenshot)# 白黒反転
-    screenshot.save('敏捷.png')  # デバッグ用にスクリーンショットを保存
-    screenshot = ImageGrab.grab(bbox=(1140, 520, 1180, 540))# 体力値
-    screenshot = ImageOps.invert(screenshot)# 白黒反転
-    screenshot.save('知力.png')  # デバッグ用にスクリーンショットを保存
+    screenshot.save('知力.png')
     screenshot = ImageGrab.grab(bbox=(1140, 520, 1180, 540))# 体力値
     screenshot = ImageOps.invert(screenshot)# 白黒反転
-    screenshot.save('体力.png')  # デバッグ用にスクリーンショットを保存
+    screenshot.save('体力.png')
     return [
         get_param_from_file('筋力.png'),
         get_param_from_file('敏捷.png'),
@@ -83,7 +79,7 @@ def get_param_from_file(file_path):
     # 画像読み込み
     img_org = Image.open(file_path)
     value = tool.image_to_string(img_org , lang='eng', builder=pyocr.builders.DigitBuilder(tesseract_layout=6))
-    if int(value) > 400:
-        return int(value) - 400
+    if value[0] == '4':
+        return int(value[1:])
     else:
         return int(value)
