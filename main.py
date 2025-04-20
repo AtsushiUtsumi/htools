@@ -2,10 +2,13 @@ from sub import get_param_list
 from time import sleep
 import pyautogui
 # 画面のボタンの座標は「.env」に移すこと
+# ボタンの押下はメソッド化してテストしやすくすること
 def press_button_b():
+    print("B級育成")
     pyautogui.moveTo(1000, 770, duration=0.2)# B級育成ボタン
     pyautogui.click()
 def press_button_c():
+    print("C級育成")
     pyautogui.moveTo(1000 - 100, 770, duration=0.2)# C級育成ボタン
     pyautogui.click()
 def press_button_not_save():
@@ -15,10 +18,9 @@ def press_button_save():
     pyautogui.moveTo(1000, 770, duration=0.1)# 保存
     pyautogui.click()
 
-for i in range(5):# 100個使っても0.32%しか上昇しないので注意
+for i in range(35):# 100個使っても0.32%しか上昇しないので注意
     print("======================")
-    press_button_c()
-    print("C級育成")
+    press_button_b()
     sleep(0.1)
     param_list = None
     while param_list == None:
