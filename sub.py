@@ -48,7 +48,7 @@ class charRec:
 image = charRec()
 image.Convert()
 result = image.imgText()
-print("結果:" + result)
+# print("結果:" + result)
 
 
 from PIL import Image
@@ -70,7 +70,7 @@ img_org = Image.open(file_path)
 #max_medals_img = img_org.crop((0, 0, 45, 15))
 # OCR
 max_medals = tool.image_to_string(img_org , lang='eng', builder=pyocr.builders.DigitBuilder(tesseract_layout=6))
-print(f'max_medals：{max_medals}')
+# print(f'max_medals：{max_medals}')
 
 def get_param_from_file(file_path):
     tools = pyocr.get_available_tools()
