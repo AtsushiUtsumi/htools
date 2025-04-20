@@ -1,7 +1,7 @@
 from sub import get_param_list
 from time import sleep
 import pyautogui
-
+# 画面のボタンの座標は「.env」に移すこと
 def press_button_b():
     pyautogui.moveTo(1000, 770, duration=0.2)# B級育成ボタン
     pyautogui.click()
