@@ -3,9 +3,10 @@ from PIL import Image
 import pyocr
 import pyocr.builders
 from PIL import ImageGrab ,ImageOps
+from time import sleep
 
 # パラメータを取得する関数
-def get_param_list():
+def _get_param_list():
     range_x_min = 1150
     range_x_max = 1175
     screenshot = ImageGrab.grab(bbox=(range_x_min, 420, range_x_max, 440))# 筋力値
@@ -22,6 +23,21 @@ def get_param_list():
         get_param_from_file('知力.png'),
         get_param_from_file('体力.png')
             ]
+
+def get_param_list():
+    count = 0
+    param_list = None
+    while param_list == None:
+        try:
+           param_list = _get_param_list()
+        except:
+            count += 1
+            print(f"パラメータ取得エラー({count}回目)")
+            if count >= 5:
+                print("パラメータ取得5回失敗したので終了します")
+                exit(0)
+            sleep(1)
+    return param_list
 
 class charRec:
     def __init__(self):
