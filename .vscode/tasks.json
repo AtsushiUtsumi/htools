@@ -4,7 +4,7 @@
 		{
 			"label": "taskF6",
 			"type": "shell",
-			"command": "python main.py;",
+			"command": "python main.py C 500 0;",
 			"presentation": {
 				"echo": true,
 				//"reveal": "silent",
