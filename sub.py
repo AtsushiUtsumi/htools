@@ -25,7 +25,9 @@ def _get_param_list():
             ]
 
 def get_param_list():
+    ERROR_COUNT = 5
     count = 0
+    sleep(0.2)
     param_list = None
     while param_list == None:
         try:
@@ -33,35 +35,11 @@ def get_param_list():
         except:
             count += 1
             print(f"パラメータ取得エラー({count}回目)")
-            if count >= 5:
-                print("パラメータ取得5回失敗したので終了します")
+            if count >= ERROR_COUNT:
+                print(f"パラメータ取得{ERROR_COUNT}回失敗したので終了します")
                 exit(0)
             sleep(1)
     return param_list
-
-class charRec:
-    def __init__(self):
-        self.img = Image.open("screenshot.png").convert("RGB")
-
-    def Convert(self):
-        width,height = self.img.size
-        for x in range(width):
-            for y in range(height):
-                r, g, b = self.img.getpixel((x,y))
-
-                if r >= 59 and g >= 59 and b >= 59:
-                    self.img.putpixel((x,y),(255,255,255))
-
-        self.img.save("体力.png")
-
-    def imgText(self):
-        return pytesseract.image_to_string(self.img, lang="eng")
-
-image = charRec()
-image.Convert()
-result = image.imgText()
-# print("結果:" + result)
-
 
 from PIL import Image
 import pyocr

@@ -7,28 +7,25 @@ def press_button_b():
     print("B級育成")
     pyautogui.moveTo(1000, 770, duration=0.2)# B級育成ボタン
     pyautogui.click()
-    sleep(0.2)
 def press_button_c():
     print("C級育成")
     pyautogui.moveTo(1000 - 100, 770, duration=0.2)# C級育成ボタン
     pyautogui.click()
-    sleep(0.2)
-def press_button_not_save():
-    pyautogui.moveTo(1000 - 100, 770, duration=0.2)# やめる
-    pyautogui.click()
-    sleep(0.2)
-def press_button_save():
-    pyautogui.moveTo(1000, 770, duration=0.2)# 保存
-    pyautogui.click()
-    sleep(0.2)
 
-count = 100
+def press_button_not_save():
+    pyautogui.moveTo(820, 770, duration=0.2)# やめる
+    pyautogui.click()
+def press_button_save():
+    pyautogui.moveTo(1060, 770, duration=0.2)# 保存
+    pyautogui.click()
+
+count = 100# 何回育成するか
 save_count = 0
 not_save_count = 0
 
 for i in range(count):# 100個使っても0.32%しか上昇しないので注意
     print("\n======================< " + str(i + 1) + "/" + str(count) + " >======================")
-    press_button_c()
+    press_button_b()
     param_list = get_param_list()
     print(param_list)
     primary_param_index = 2# メインステータスのインデックス
