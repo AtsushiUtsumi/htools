@@ -11,6 +11,7 @@ def press_button_b():
 def press_button_c():
     print("C級育成")
     pyautogui.moveTo(1000 - 100, 770, duration=0.2)# C級育成ボタン
+    sleep(0.1)
     pyautogui.click()
 
 def press_button_not_save():
@@ -20,16 +21,16 @@ def press_button_save():
     pyautogui.moveTo(1060, 770, duration=0.2)# 保存
     pyautogui.click()
 
-count = 112# 何回育成するか
+count = 100# 何回育成するか
 save_count = 0
 not_save_count = 0
 
 for i in range(count):# 100個使っても0.32%しか上昇しないので注意
     print("\n======================< " + str(i + 1) + "/" + str(count) + " >======================")
-    press_button_b()
+    press_button_c()
     param_list = get_param_list()
     print(param_list)
-    primary_param_index = 2# メインステータスのインデックス
+    primary_param_index = 0# メインステータスのインデックス
     secondary_param_index = 3# サブステータスのインデックス
     if param_list[primary_param_index] + param_list[secondary_param_index] == 0 and param_list[primary_param_index] > param_list[secondary_param_index]:# 合計がでもメインステータスがプラスなら保存
         print("保存(メインステータス優先)")
