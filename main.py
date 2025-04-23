@@ -21,7 +21,7 @@ def press_button_save():
     pyautogui.moveTo(1060, 770, duration=0.2)# 保存
     pyautogui.click()
 
-count = 1000# 何回育成するか
+count = 10# 何回育成するか
 save_count = 0
 not_save_count = 0
 change_list = [0, 0, 0, 0]# ステータスの変化量を記録するリスト

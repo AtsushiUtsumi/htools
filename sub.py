@@ -1,9 +1,8 @@
-import pytesseract
-from PIL import Image
+from PIL import Image, ImageGrab
 import pyocr
 import pyocr.builders
-from PIL import ImageGrab ,ImageOps
 from time import sleep
+import sys
 
 # パラメータを取得する関数
 def _get_param_list():
@@ -40,27 +39,6 @@ def get_param_list():
                 exit(0)
             sleep(1)
     return param_list
-
-from PIL import Image
-import pyocr
-import pyocr.builders
-import sys
-
-file_path = 'screenshot2.png'
-# ツール読み込み
-tools = pyocr.get_available_tools()
-# ツールが見付からない場合
-if len(tools) == 0:
-    print('pyocrが見付かりません。pyocrをインストールして下さい。')
-    sys.exit(1)
-tool = tools[0]
-# 画像読み込み
-img_org = Image.open(file_path)
-# 枚数表記部分を切り取り
-#max_medals_img = img_org.crop((0, 0, 45, 15))
-# OCR
-max_medals = tool.image_to_string(img_org , lang='eng', builder=pyocr.builders.DigitBuilder(tesseract_layout=6))
-# print(f'max_medals：{max_medals}')
 
 def get_param_from_file(file_path):
     tools = pyocr.get_available_tools()
